@@ -1,0 +1,61 @@
+.wrapper {
+  margin-bottom: 20px;
+}
+.list {
+  display: inline-block;
+  align-items: stretch;
+  width: 500px;
+  padding-bottom: 20px;
+}
+
+.listItem {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 3px solid white;
+  background-color: #ffffb8;
+  padding: 15px;
+}
+.listItem:hover {
+  border: 2px solid rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px 1px #ffbf5f;
+}
+
+.contactText {
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+}
+.deleteButton {
+  width: 100px;
+  height: 30px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: white;
+}
+.deleteButton:hover,
+.deleteButton:focus {
+  border: 2px solid grey;
+  background-color: grey;
+}
+
+.enter {
+  transform: translateX(-100%);
+}
+
+.enterActive {
+  transition: all 250ms linear;
+  transform: translateX(0);
+}
+
+.exit {
+  transform: translateX(0);
+}
+
+.exitActive {
+  transition: all 250ms linear;
+  transform: translateX(-100%);
+}

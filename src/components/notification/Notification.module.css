@@ -1,0 +1,18 @@
+.notificationWrapper {
+  width: 200px;
+  text-align: center;
+  padding: 25px 10px;
+  margin-right: 0px;
+  background-color: rgb(206, 78, 55);
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+.alertText {
+  font-weight: 300;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
