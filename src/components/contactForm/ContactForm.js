@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import phoneActions from "../../redux/phonebook/phoneActions";
+
 import styles from "./ContactForm.module.css";
 
 const ContactForm = ({ addContact }) => {
@@ -18,6 +21,7 @@ const ContactForm = ({ addContact }) => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
+
     addContact({
       ...state,
       // name: state.name,
@@ -61,8 +65,10 @@ const ContactForm = ({ addContact }) => {
     </>
   );
 };
-export default ContactForm;
-//  класові компоненти
+const mapDispatchToProps = { addContact: phoneActions.addContact };
+export default connect(null, mapDispatchToProps)(ContactForm);
+
+//  =====================класові компоненти====================
 
 // import React, { Component } from "react";
 // import styles from "./ContactForm.module.css";

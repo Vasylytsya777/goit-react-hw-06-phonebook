@@ -107,60 +107,66 @@ const App = () => {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  // Notification  вставити компонент!!!
+
   return (
     <div className={styles.wrapper}>
-      <CSSTransition
-        in={alert}
-        appear={true}
-        timeout={250}
-        classNames={styles}
-        unmountOnExit
-      >
-        <Notification text={text} />
-      </CSSTransition>
-      <CSSTransition
-        in={true}
-        appear={true}
-        classNames={styles}
-        timeout={250}
-        unmountOnExit
-      >
-        <h1 className={styles.titlePhonebook}>Phonebook</h1>
-      </CSSTransition>
+      <h1 className={styles.titlePhonebook}>Phonebook</h1>
 
-      <ContactForm addContact={addContact} />
-
-      <div>
-        {state.contacts.length > 0 && (
-          <h2 className={styles.titleContacts}>Contacts</h2>
-        )}
-
-        <CSSTransition
-          in={state.contacts.length > 1}
-          classNames={styles}
-          timeout={250}
-          unmountOnExit
-        >
-          <Filter filter={state.filter} onHandleFilter={onHandleFilter} />
-        </CSSTransition>
-      </div>
-
-      {state.contacts.length > 0 && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          classNames={styles}
-          timeout={250}
-          unmountOnExit
-        >
-          <ContactList
-            contacts={getFilteredContact()}
-            deleteContact={deleteContact}
-          />
-        </CSSTransition>
-      )}
+      <ContactForm />
     </div>
+
+    // <div className={styles.wrapper}>
+    //   <CSSTransition
+    //     in={alert}
+    //     appear={true}
+    //     timeout={250}
+    //     classNames={styles}
+    //     unmountOnExit
+    //   >
+    //     <Notification text={text} />
+    //   </CSSTransition>
+    //   <CSSTransition
+    //     in={true}
+    //     appear={true}
+    //     classNames={styles}
+    //     timeout={250}
+    //     unmountOnExit
+    //   >
+    //     <h1 className={styles.titlePhonebook}>Phonebook</h1>
+    //   </CSSTransition>
+
+    //   <ContactForm addContact={addContact} />
+
+    //   <div>
+    //     {state.contacts.length > 0 && (
+    //       <h2 className={styles.titleContacts}>Contacts</h2>
+    //     )}
+
+    //     <CSSTransition
+    //       in={state.contacts.length > 1}
+    //       classNames={styles}
+    //       timeout={250}
+    //       unmountOnExit
+    //     >
+    //       <Filter filter={state.filter} onHandleFilter={onHandleFilter} />
+    //     </CSSTransition>
+    //   </div>
+
+    //   {state.contacts.length > 0 && (
+    //     <CSSTransition
+    //       in={true}
+    //       appear={true}
+    //       classNames={styles}
+    //       timeout={250}
+    //       unmountOnExit
+    //     >
+    //       <ContactList
+    //         contacts={getFilteredContact()}
+    //         deleteContact={deleteContact}
+    //       />
+    //     </CSSTransition>
+    //   )}
+    // </div>
   );
 };
 export default App;
@@ -168,7 +174,7 @@ export default App;
 //
 //
 
-//  Класові компоненти
+//  =====================Класові компоненти======================================
 
 // import React, { Component } from "react";
 // import styles from "./App.module.css";
