@@ -16,8 +16,8 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
   //   componentDidMount
   useEffect(() => {
     if (localStorage.getItem("contacts")) {
-      const localContacts = JSON.parse(localStorage.getItem("contacts"));
-      localContacts.length && contacts([...localContacts]);
+      const contactsFromLS = JSON.parse(localStorage.getItem("contacts"));
+      contactsFromLS.length && contacts([...contactsFromLS]);
     }
     // eslint-disable-next-line
   }, []);
