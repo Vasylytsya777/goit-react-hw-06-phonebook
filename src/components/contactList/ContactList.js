@@ -45,8 +45,8 @@ ContactList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  contacts: state.tasks.items.filter((item) =>
-    item.name.toLowerCase().includes(state.tasks.filter.toLowerCase())
+  contacts: state.contacts.items.filter((item) =>
+    item.name.toLowerCase().includes(state.contacts.filter.toLowerCase())
   ),
 });
 

@@ -26,7 +26,7 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  value: state.tasks.filter,
+  value: state.contacts.filter,
 });
 
 const mapDispatchToProps = { onHandleFilter: phoneActions.onHandleFilter };
