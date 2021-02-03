@@ -1,18 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
+import phoneActions from "../../redux/phonebook/phoneActions";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
 
-const Filter = ({ filter, onHandleFilter }) => {
+const Filter = ({ value, onHandleFilter }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.inputName}>Find contacts by name</h3>
       <input
         className={styles.filter}
         type="text"
-        name="filter"
-        value={filter}
+        // name="filter"
+        value={value}
         placeholder="Filter Name"
-        onChange={onHandleFilter}
+        onChange={(e) => onHandleFilter(e.target.value)}
       ></input>
     </div>
   );
@@ -20,13 +22,13 @@ const Filter = ({ filter, onHandleFilter }) => {
 
 Filter.propTypes = {
   onHandleFilter: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
+  value: PropTypes.string,
 };
 
-export default Filter;
+const mapStateToProps = (state) => ({
+  value: state.tasks.filter,
+});
+
+const mapDispatchToProps = { onHandleFilter: phoneActions.onHandleFilter };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

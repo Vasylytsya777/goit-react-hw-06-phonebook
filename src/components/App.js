@@ -113,7 +113,8 @@ const App = () => {
       <h1 className={styles.titlePhonebook}>Phonebook</h1>
 
       <ContactForm />
-
+      <Filter />
+      {/* <Filter filter={state.filter} onHandleFilter={onHandleFilter} /> */}
       <ContactList
       // contacts={getFilteredContact()}
       // deleteContact={deleteContact}

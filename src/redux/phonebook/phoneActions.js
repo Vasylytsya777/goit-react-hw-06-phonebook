@@ -14,30 +14,16 @@ const addContact = (newContacts) => ({
 
 const deleteContact = (id) => ({
   type: actionsTypes.DELETE,
-  payload: {
-    id,
-  },
+  payload: id,
 });
 
-const onHandleFilter = (e) => ({
+const onHandleFilter = (filter) => ({
   type: actionsTypes.FILTER,
-  payload: {
-    phone: {
-      e,
-    },
-  },
-});
-
-const getFilteredContact = () => ({
-  type: actionsTypes.CONTACTS,
-  payload: {
-    phone: {},
-  },
+  payload: filter,
 });
 
 export default {
   addContact,
   deleteContact,
   onHandleFilter,
-  getFilteredContact,
 };

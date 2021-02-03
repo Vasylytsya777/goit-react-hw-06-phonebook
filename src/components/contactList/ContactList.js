@@ -45,7 +45,9 @@ ContactList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  contacts: state.tasks.items,
+  contacts: state.tasks.items.filter((item) =>
+    item.name.toLowerCase().includes(state.tasks.filter.toLowerCase())
+  ),
 });
 
 const mapDispatchToProps = { deleteContact: actionsTypes.deleteContact };
