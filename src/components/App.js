@@ -1,26 +1,23 @@
 // Хуки
 import React, { useState, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
+// import { CSSTransition } from "react-transition-group";
 import styles from "./App.module.css";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
-import { Notification } from "./notification/Notification";
+// import { Notification } from "./notification/Notification";
+
+const initialState = {
+  contacts: [],
+  filter: "",
+};
 
 const App = () => {
-  const [state, setState] = useState({
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
-    filter: "",
-  });
+  const [state, setState] = useState({ ...initialState });
 
-  const [alert, setAlert] = useState(false);
-  const [text, setAlertText] = useState("");
+  // const [alert, setAlert] = useState(false);
+  // const [text, setAlertText] = useState("");
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (prevState.contacts !== this.state.contacts) {
@@ -49,16 +46,16 @@ const App = () => {
   //   }
   // }
 
-  const getVisibleAlert = (text) => {
-    setAlertText(text);
-    setAlert(true);
-    setTimeout(() => {
-      setAlert(false);
-    }, 2000);
-    setTimeout(() => {
-      setAlertText("");
-    }, 2700);
-  };
+  // const getVisibleAlert = (text) => {
+  //   setAlertText(text);
+  //   setAlert(true);
+  //   setTimeout(() => {
+  //     setAlert(false);
+  //   }, 2000);
+  //   setTimeout(() => {
+  //     setAlertText("");
+  //   }, 2700);
+  // };
 
   // const addContact = (newContacts) => {
   //   const contact = {

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import actionsTypes from "./phoneActionsTypes";
+import actionsTypes from "../reducers/phoneActionsTypes";
 
 const addContact = (newContacts) => ({
   type: actionsTypes.ADD,

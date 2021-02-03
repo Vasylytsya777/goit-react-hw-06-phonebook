@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import phoneActions from "../../redux/phonebook/phoneActions";
+import phoneActions from "../../redux/actions/phonebookActions";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
 

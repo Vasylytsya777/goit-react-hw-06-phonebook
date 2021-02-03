@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import phoneActions from "../../redux/phonebook/phoneActions";
+import phoneActions from "../../redux/actions/phonebookActions";
 
 import styles from "./ContactForm.module.css";
 
