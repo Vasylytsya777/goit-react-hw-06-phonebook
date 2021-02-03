@@ -1,9 +1,30 @@
 import { combineReducers } from "redux";
+import actionsTypes from "./phoneActionsTypes";
 
-const items = (state = [], action) => state;
+const items = (state = [], { type, payload }) => {
+  switch (type) {
+    case actionsTypes.ADD:
+      return [...state, payload.phone];
+
+    case actionsTypes.DELETE:
+      return state.filter((task) => task.id !== payload.id);
+
+    default:
+      return state;
+  }
+};
+
 const filter = (state = "", action) => state;
 
 export default combineReducers({ items, filter });
+
+// const deleteContact = (e) => {
+//   const contactId = e.target.dataset.id;
+//   setState((prevState) => ({
+//     ...prevState,
+//     contacts: prevState.contacts.filter((item) => item.id !== contactId),
+//   }));
+// };
 
 // const addContact = (newContacts) => {
 //   const contact = {
@@ -31,14 +52,6 @@ export default combineReducers({ items, filter });
 //       }));
 //     }
 //   }
-// };
-
-// const deleteContact = (e) => {
-//   const contactId = e.target.dataset.id;
-//   setState((prevState) => ({
-//     ...prevState,
-//     contacts: prevState.contacts.filter((item) => item.id !== contactId),
-//   }));
 // };
 
 // const onHandleFilter = (e) => {

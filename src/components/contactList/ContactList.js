@@ -1,9 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import actionsTypes from "../../redux/phonebook/phoneActions";
+
 import styles from "./ContactList.module.css";
 
-export const ContactList = ({ contacts, deleteContact }) => {
+const ContactList = ({ contacts, deleteContact }) => {
   return (
     <div>
       <TransitionGroup component="ul" className={styles.list}>
@@ -17,7 +20,7 @@ export const ContactList = ({ contacts, deleteContact }) => {
                   className={styles.deleteButton}
                   type="button"
                   data-id={id}
-                  onClick={deleteContact}
+                  onClick={() => deleteContact(id)}
                 >
                   Delete
                 </button>
@@ -41,7 +44,13 @@ ContactList.propTypes = {
   ),
 };
 
-export default ContactList;
+const mapStateToProps = (state) => ({
+  contacts: state.tasks.items,
+});
+
+const mapDispatchToProps = { deleteContact: actionsTypes.deleteContact };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
 //  класові компоненти
 

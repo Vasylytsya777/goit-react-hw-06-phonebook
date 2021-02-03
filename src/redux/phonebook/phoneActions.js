@@ -12,12 +12,10 @@ const addContact = (newContacts) => ({
   },
 });
 
-const deleteContact = (e) => ({
+const deleteContact = (id) => ({
   type: actionsTypes.DELETE,
   payload: {
-    phone: {
-      e,
-    },
+    id,
   },
 });
 
