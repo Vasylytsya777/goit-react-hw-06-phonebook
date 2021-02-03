@@ -13,6 +13,18 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
     name: "",
     number: "",
   });
+  //   componentDidMount
+  useEffect(() => {
+    if (localStorage.getItem("contacts")) {
+      const localContacts = JSON.parse(localStorage.getItem("contacts"));
+      localContacts.length && contacts([...localContacts]);
+    }
+    // eslint-disable-next-line
+  }, []);
+  //   componentDidUpdate
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   useEffect(() => {
     if (text) {
@@ -82,7 +94,7 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
         <CSSTransition
           in={true}
           classNames={styles}
-          timeout={500}
+          timeout={250}
           unmountOnExit
         >
           <Notification text={text} />

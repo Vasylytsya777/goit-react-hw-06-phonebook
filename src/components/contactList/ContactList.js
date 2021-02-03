@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { deleteContact } from "../../redux/actions/phonebookActions";
-
 import styles from "./ContactList.module.css";
 
 const ContactList = ({ contacts, deleteContact }) => {

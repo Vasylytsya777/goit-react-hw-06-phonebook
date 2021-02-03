@@ -4,7 +4,7 @@ import { onHandleFilter } from "../../redux/actions/phonebookActions";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
 
-const Filter = ({ value, state, onHandleFilter }) => {
+const Filter = ({ value, onHandleFilter }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.inputName}>Find contacts by name</h3>
@@ -26,7 +26,6 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  state: state.contacts.items,
   filter: state.contacts.filter,
 });
 
