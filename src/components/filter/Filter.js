@@ -1,20 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import phoneActions from "../../redux/actions/phonebookActions";
+import { onHandleFilter } from "../../redux/actions/phonebookActions";
 import PropTypes from "prop-types";
 import styles from "./Filter.module.css";
 
-const Filter = ({ value, onHandleFilter }) => {
+const Filter = ({ value, state, onHandleFilter }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.inputName}>Find contacts by name</h3>
       <input
         className={styles.filter}
         type="text"
-        // name="filter"
+        name="filter"
         value={value}
         placeholder="Filter Name"
-        onChange={(e) => onHandleFilter(e.target.value)}
+        onChange={onHandleFilter}
       ></input>
     </div>
   );
@@ -26,9 +26,15 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  value: state.contacts.filter,
+  state: state.contacts.items,
+  filter: state.contacts.filter,
 });
 
-const mapDispatchToProps = { onHandleFilter: phoneActions.onHandleFilter };
-
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onHandleFilter: (data) => {
+      dispatch(onHandleFilter(data));
+    },
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

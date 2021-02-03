@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import phoneActions from "../../redux/actions/phonebookActions";
+import { deleteContact } from "../../redux/actions/phonebookActions";
 
 import styles from "./ContactList.module.css";
 
@@ -20,7 +20,7 @@ const ContactList = ({ contacts, deleteContact }) => {
                   className={styles.deleteButton}
                   type="button"
                   data-id={id}
-                  onClick={() => deleteContact(id)}
+                  onClick={deleteContact}
                 >
                   Delete
                 </button>
@@ -49,15 +49,19 @@ const mapStateToProps = (state) => ({
     item.name.toLowerCase().includes(state.contacts.filter.toLowerCase())
   ),
 });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteContact: (data) => {
+      dispatch(deleteContact(data));
+    },
+  };
+};
 
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//   deleteContact: () => dispatch(phoneActions.deleteContact(ownProps)),
-// });
-const mapDispatchToProps = { deleteContact: phoneActions.deleteContact };
+// const mapDispatchToProps = { deleteContact: deleteContact };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
-//  класові компоненти
+// ============================= класові компоненти ================================
 
 // import React from "react";
 // import PropTypes from "prop-types";

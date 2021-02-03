@@ -2,27 +2,29 @@ import { createAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 // ========================= redux toolkit========================
 
-const addContact = createAction("phone/add", (newContacts) => ({
-  payload: {
-    phone: {
-      id: uuidv4(),
-      name: newContacts.name,
-      number: newContacts.number,
-    },
-  },
-}));
+export const addContact = createAction("phone/add", (data) => {
+  return {
+    payload: { ...data, id: uuidv4() },
+  };
+});
 
 // правильний запис але можна скоротити як показано нижче, id буде приходити бо його ід і  так буде приходити
 // const deleteContact = createAction("phone/delete", (id) => ({ payload: id }));
-const deleteContact = createAction("phone/delete");
+export const deleteContact = createAction("phone/delete", (e) => {
+  const id = e.target.dataset.id;
+  return {
+    payload: id,
+  };
+});
 
-const onHandleFilter = createAction("phone/filter");
+export const onHandleFilter = createAction("phone/filter", (e) => {
+  const { value } = e.target;
+  return {
+    payload: value,
+  };
+});
 
-export default {
-  addContact,
-  deleteContact,
-  onHandleFilter,
-};
+export const alertContacts = createAction("phone/alert");
 
 // ========================= react - redux ========================
 

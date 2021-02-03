@@ -1,37 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import phoneActions from "../../redux/actions/phonebookActions";
 import styles from "./ContactForm.module.css";
+import {
+  addContact,
+  alertContacts,
+} from "../../redux/actions/phonebookActions";
+import { Notification } from "../notification/Notification";
+import { CSSTransition } from "react-transition-group";
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
   const [state, setState] = useState({
     name: "",
     number: "",
   });
 
+  useEffect(() => {
+    if (text) {
+      setTimeout(() => {
+        alertContacts("");
+      }, 2000);
+    }
+  }, [text, alertContacts]);
+
   const onHandleChange = (e) => {
     const { name, value } = e.target;
-    setState((prev) => ({ ...prev, [name]: value }));
-    // const name = e.target.name;
-    // this.setState({ [name]: e.target.value });
-    // console.log("value", value);
-    // console.log("name", name);
+    setState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+
+  // const onHandleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setState((prev) => ({ ...prev, [name]: value }));
+  // const name = e.target.name;
+  // this.setState({ [name]: e.target.value });
+  // console.log("value", value);
+  // console.log("name", name);
+  // };
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
+    if (!state.name.length) {
+      alertContacts("Please, enter your name");
+    } else if (!state.number.length) {
+      alertContacts("Please, enter your number");
+    } else {
+      if (
+        contacts.some(
+          (contact) => contact.name.toLowerCase() === state.name.toLowerCase()
+        )
+      ) {
+        alertContacts(`${state.name} is already in contacts.`);
+      } else {
+        addContact({ ...state });
+      }
+    }
 
-    addContact({
-      ...state,
-      // name: state.name,
-      // number: state.number,
+    setState({
+      name: "",
+      number: "",
     });
-    setState({ name: "", number: "" }); //як висипати стейт по іншому
   };
 
+  // const onHandleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   addContact({
+  //     ...state,
+  //     // name: state.name,
+  //     // number: state.number,
+  //   });
+  //   setState({ name: "", number: "" }); //як висипати стейт по іншому
+  // };
+
   // const { name, number } = state;
+
   return (
     <>
+      {text && (
+        <CSSTransition
+          in={true}
+          classNames={styles}
+          timeout={500}
+          unmountOnExit
+        >
+          <Notification text={text} />
+        </CSSTransition>
+      )}
       <form className={styles.form} onSubmit={onHandleSubmit}>
         <label className={styles.label}>
           Name
@@ -64,8 +120,26 @@ const ContactForm = ({ addContact }) => {
     </>
   );
 };
-const mapDispatchToProps = { addContact: phoneActions.addContact };
-export default connect(null, mapDispatchToProps)(ContactForm);
+
+const mapStateToProps = (state) => {
+  return {
+    contacts: state.contacts.items,
+    text: state.contacts.text,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    alertContacts: (data) => {
+      dispatch(alertContacts(data));
+    },
+    addContact: (data) => {
+      dispatch(addContact(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 
 //  =====================класові компоненти====================
 

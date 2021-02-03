@@ -1,23 +1,29 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import actionsTypes from "../actions/phonebookActions";
+import {
+  addContact,
+  deleteContact,
+  onHandleFilter,
+  alertContacts,
+} from "../actions/phonebookActions";
 
 // ========================= redux toolkit createReducer ========================
 
 const items = createReducer([], {
-  [actionsTypes.addContact]: (state, action) => [
-    ...state,
-    action.payload.phone,
-  ],
-  [actionsTypes.deleteContact]: (state, action) =>
+  [addContact]: (state, action) => [...state, action.payload],
+  [deleteContact]: (state, action) =>
     state.filter((task) => task.id !== action.payload),
 });
 
 const filter = createReducer("", {
-  [actionsTypes.onHandleFilter]: (_, action) => action.payload,
+  [onHandleFilter]: (_, action) => action.payload,
 });
 
-export default combineReducers({ items, filter });
+const text = createReducer("", {
+  [alertContacts]: (_, action) => action.payload,
+});
+
+export default combineReducers({ items, filter, text });
 
 // ========================= redux toolkit====================
 // import { combineReducers } from "redux";
