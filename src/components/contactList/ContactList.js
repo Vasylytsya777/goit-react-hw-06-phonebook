@@ -50,6 +50,9 @@ const mapStateToProps = (state) => ({
   ),
 });
 
+// const mapDispatchToProps = (dispatch, ownProps) => ({
+//   deleteContact: () => dispatch(phoneActions.deleteContact(ownProps)),
+// });
 const mapDispatchToProps = { deleteContact: phoneActions.deleteContact };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
