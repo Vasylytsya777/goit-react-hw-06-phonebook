@@ -56,8 +56,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// const mapDispatchToProps = { deleteContact: deleteContact };
-
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
 // ============================= класові компоненти ================================

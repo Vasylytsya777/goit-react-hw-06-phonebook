@@ -42,15 +42,6 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
     }));
   };
 
-  // const onHandleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setState((prev) => ({ ...prev, [name]: value }));
-  // const name = e.target.name;
-  // this.setState({ [name]: e.target.value });
-  // console.log("value", value);
-  // console.log("name", name);
-  // };
-
   const onHandleSubmit = (e) => {
     e.preventDefault();
     if (!state.name.length) {
@@ -75,19 +66,6 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
     });
   };
 
-  // const onHandleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   addContact({
-  //     ...state,
-  //     // name: state.name,
-  //     // number: state.number,
-  //   });
-  //   setState({ name: "", number: "" }); //як висипати стейт по іншому
-  // };
-
-  // const { name, number } = state;
-
   return (
     <>
       {text && (
@@ -111,7 +89,6 @@ const ContactForm = ({ contacts, text, addContact, alertContacts }) => {
             name="name"
             onChange={onHandleChange}
           />
-          {/* <label key={uuidv4()}> */}
         </label>
         <label className={styles.label}>
           Number
